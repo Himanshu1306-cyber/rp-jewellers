@@ -277,22 +277,21 @@ body, html {
     color: #fff;
     border-color: rgba(255,255,255,0.7);
 }
-/* --- 6. Mobile & Tablet Responsiveness (Perfect Fixed Version) --- */
+/* --- 6. Mobile & Tablet Responsiveness (Final Fixed Version) --- */
 
 @media screen and (max-width: 768px) {
-    /* Pure body aur main content ka scale normal karein */
     body, html {
         position: relative;
-        overflow-x: hidden; /* Side scroll bilkul band */
+        overflow-x: hidden;
     }
 
-    /* Navbar ko top par sahi se align karein */
+    /* Navbar standard format me rahegi */
     .navbar {
         padding: 15px 20px;
-        flex-direction: row;
+        display: flex;
         justify-content: space-between;
         align-items: center;
-        background: rgba(0, 0, 0, 0.8); /* Phone me background dark rakhein taaki text visible ho */
+        background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
     }
 
     .logo {
@@ -300,9 +299,22 @@ body, html {
         letter-spacing: 1px;
     }
 
-    /* CRITICAL FIX: Jo links screen par bikhre hain, unhe mobile me chupa rahe hain temporary margin spacing hatane ke liye */
+    /* CRITICAL FIX: Links ab gayab nahi honge, balki navbar se hatkar main title ke just upar clean row me dikhenge */
     .nav-links {
-        display: none !important; 
+        display: flex !important;
+        position: absolute;
+        top: -45px; /* Title ke upar set karne ke liye */
+        left: 0;
+        width: 100%;
+        justify-content: center;
+        gap: 12px;
+    }
+
+    .nav-links a {
+        font-size: 9px;
+        letter-spacing: 1px;
+        margin: 0;
+        color: #ddd;
     }
 
     .book-visit {
@@ -311,11 +323,13 @@ body, html {
         letter-spacing: 1px;
     }
 
-    /* Hero Text Container ko pure phone screen ke center me fixed karein */
+    /* Hero Content Container */
     .hero-content {
         width: 100%;
         padding: 0 15px;
         box-sizing: border-box;
+        position: relative;
+        margin-top: 40px; /* Links ke liye jagah banane ko */
     }
 
     .subtitle {
@@ -324,18 +338,18 @@ body, html {
         margin-bottom: 10px;
     }
 
-    /* Main Title jo video me 'RP WELLE...' hokar toot raha tha, ab ek line me aayega */
+    /* Main Title ek line me perfect fit */
     .main-title {
-        font-size: 26px; /* Size chota kiya taaki kisi bhi phone me na toote */
+        font-size: 28px;
         letter-spacing: 4px;
         line-height: 1.2;
-        margin-bottom: 25px;
+        margin-bottom: 30px;
         display: block;
         width: 100%;
-        white-space: nowrap; /* Text ko line break karne se rokega */
+        white-space: nowrap;
     }
 
-    /* Buttons ek ke niche ek clean dikhenge */
+    /* Buttons ek ke niche ek structured */
     .cta-buttons {
         flex-direction: column !important;
         align-items: center;
@@ -344,32 +358,17 @@ body, html {
     }
 
     .btn {
-        width: 80%; /* Buttons full width ke pass aayenge */
-        max-width: 220px;
+        width: 85%;
+        max-width: 240px;
         padding: 12px 0;
-        font-size: 9px;
+        font-size: 10px;
         letter-spacing: 1px;
         display: inline-block;
     }
 
-    /* Preloader Mobile Fix */
-    .loader-container {
-        width: 250px;
-        height: 250px;
-    }
-
-    .outer-circle {
-        width: 220px;
-        height: 220px;
-    }
-
-    .inner-circle {
-        width: 170px;
-        height: 170px;
-    }
-
-    .loader-logo {
-        font-size: 16px;
-        letter-spacing: 3px;
-    }
+    /* Preloader Setup for Mobile */
+    .loader-container { width: 250px; height: 250px; }
+    .outer-circle { width: 220px; height: 220px; }
+    .inner-circle { width: 170px; height: 170px; }
+    .loader-logo { font-size: 16px; letter-spacing: 3px; }
 }
