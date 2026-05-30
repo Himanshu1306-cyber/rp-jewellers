@@ -231,11 +231,13 @@ body, html {
     font-weight: 300;
 }
 
+
 .main-title {
     font-size: 80px;
-    font-weight: 200;
+    font-weight: 400; /* Phele ye 200 tha, 400 karne se ye clean aur perfectly thick dikhega */
     letter-spacing: 16px;
     margin-bottom: 45px;
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); /* Ek halka shadow taaki image ke aage text hamesha pop-out kare */
 }
 
 /* Premium Minimal Buttons */
