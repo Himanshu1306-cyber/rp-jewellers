@@ -1,0 +1,167 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body, html {
+    height: 100%;
+    background-color: #111;
+    overflow: hidden; /* Scrollbar chupane ke liye */
+}
+
+/* Navbar Design */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 50px;
+    z-index: 10;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.6), transparent);
+}
+
+.logo {
+    color: #fff;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 4px;
+}
+
+.nav-links a {
+    color: #aaa;
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 3px;
+    margin: 0 20px;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #fff;
+}
+
+.book-visit {
+    background: transparent;
+    border: 1px solid #fff;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 11px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.book-visit:hover {
+    background-color: #fff;
+    color: #000;
+}
+
+/* Hero Section & Slider setup */
+.hero-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.slider {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+/* Images aur unka slider animation */
+.slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    animation: fadeSlider 10s infinite; /* 10 second me change hoga */
+}
+
+/* Agar aapke paas images hain to unka path yahan dalein, nahi to yeh placeholder colors hain */
+.slide1 {
+    background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=1920');
+}
+
+.slide2 {
+    background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=1920');
+    animation-delay: 5s;
+}
+
+@keyframes fadeSlider {
+    0% { opacity: 0; }
+    10% { opacity: 1; }
+    50% { opacity: 1; }
+    60% { opacity: 0; }
+    100% { opacity: 0; }
+}
+
+/* Center Content Design */
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: #fff;
+}
+
+.subtitle {
+    font-size: 11px;
+    letter-spacing: 5px;
+    margin-bottom: 20px;
+    color: #ccc;
+    font-weight: 300;
+}
+
+.main-title {
+    font-size: 75px;
+    font-weight: 300;
+    letter-spacing: 12px;
+    margin-bottom: 40px;
+}
+
+/* Buttons */
+.cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.btn {
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 2px;
+    padding: 15px 35px;
+    transition: all 0.3s ease;
+}
+
+.btn-outline {
+    border: 1px solid #fff;
+    color: #fff;
+}
+
+.btn-outline:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.btn-filled {
+    background-color: #fff;
+    color: #000;
+}
+
+.btn-filled:hover {
+    background-color: #ddd;
+}
