@@ -4,37 +4,79 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RP Jewellers</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <header class="navbar">
-        <div class="logo">RP JEWELLERS</div>
-        <nav class="nav-links">
-            <a href="#">COLLECTIONS</a>
-            <a href="#">SIGNATURE</a>
-            <a href="#">ATELIER</a>
-            <a href="#">CONTACT</a>
-        </nav>
-        <button class="book-visit">BOOK VISIT</button>
-    </header>
-
-    <section class="hero-container">
-        <div class="slider">
-            <div class="slide slide1"></div>
-            <div class="slide slide2"></div>
+    <!-- 1. Premium 1-100% Circle Preloader -->
+    <div id="preloader">
+        <div class="loader-container">
+            <div class="circle outer-circle"></div>
+            <div class="circle inner-circle"></div>
+            <h2 class="loader-logo">RP JEWELLERS</h2>
+            <div id="counter">0%</div>
         </div>
+    </div>
 
-        <div class="hero-content">
-            <p class="subtitle">EST. 1948 — NAUGACHIA, BIHAR</p>
-            <h1 class="main-title">RP JEWELLERS</h1>
-            <div class="cta-buttons">
-                <a href="#" class="btn btn-outline">COLLECTIONS</a>
-                <a href="#" class="btn btn-filled">ENTER SITE →</a>
+    <!-- 2. Main Website Layout (Jo Loading ke baad smooth entry lega) -->
+    <div id="main-content">
+        <!-- Header / Navbar -->
+        <header class="navbar">
+            <div class="logo">RP JEWELLERS</div>
+            <nav class="nav-links">
+                <a href="#">COLLECTIONS</a>
+                <a href="#">SIGNATURE</a>
+                <a href="#">ATELIER</a>
+                <a href="#">CONTACT</a>
+            </nav>
+            <button class="book-visit">BOOK VISIT</button>
+        </header>
+
+        <!-- Hero Section / 3D Cinematic Slider -->
+        <section class="hero-container">
+            <div class="slider">
+                <div class="slide slide1"></div>
+                <div class="slide slide2"></div>
             </div>
-        </div>
-    </section>
 
+            <!-- Overlay Text & Buttons -->
+            <div class="hero-content">
+                <p class="subtitle">EST. 1948 — NAUGACHIA, BIHAR</p>
+                <h1 class="main-title">RP JEWELLERS</h1>
+                <div class="cta-buttons">
+                    <a href="#" class="btn btn-outline">COLLECTIONS</a>
+                    <a href="#" class="btn btn-filled">ENTER SITE →</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- JavaScript: 0% se 100% Loader Count hone ke liye -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            let counterElement = document.getElementById("counter");
+            let preloader = document.getElementById("preloader");
+            let mainContent = document.getElementById("main-content");
+            let count = 0;
+
+            // 0 se 100 tak count chalane ke liye interval
+            let loadingInterval = setInterval(() => {
+                count++;
+                counterElement.innerText = count + "%";
+
+                if (count === 100) {
+                    clearInterval(loadingInterval);
+                    
+                    // 100% hote hi loader ko fade-out karein
+                    preloader.style.opacity = "0";
+                    preloader.style.visibility = "hidden";
+                    
+                    // Main content ko smooth show karein
+                    mainContent.classList.add("visible");
+                }
+            }, 30); // Speed control karne ke liye (30ms)
+        });
+    </script>
 </body>
 </html>
