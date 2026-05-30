@@ -277,3 +277,80 @@ body, html {
     color: #fff;
     border-color: rgba(255,255,255,0.7);
 }
+/* --- 6. Mobile & Tablet Responsiveness --- */
+
+/* Jab screen size 768px ya usse choti hogi (Phones aur Tablets) */
+@media screen and (max-width: 768px) {
+    /* Navbar adjust karein */
+    .navbar {
+        padding: 20px;
+    }
+
+    .logo {
+        font-size: 16px;
+        letter-spacing: 2px;
+    }
+
+    /* Phone me beech ke links ko chupa denge ya design minimal karenge */
+    .nav-links {
+        display: none; /* Premium look ke liye phone me flat navigation menu hidden rakha hai */
+    }
+
+    .book-visit {
+        padding: 8px 14px;
+        font-size: 10px;
+        letter-spacing: 1px;
+    }
+
+    /* Hero Center Content adjust karein */
+    .subtitle {
+        font-size: 9px;
+        letter-spacing: 3px;
+        margin-bottom: 15px;
+    }
+
+    .main-title {
+        font-size: 38px; /* Badi screen par 80px tha, phone par 38px ekdum perfect fit aayega */
+        letter-spacing: 6px;
+        margin-bottom: 30px;
+        padding: 0 10px;
+    }
+
+    /* Buttons ko vertically stack (ek ke niche ek) karein taaki screen se bahar na jayein */
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        width: 100%;
+        padding: 0 20px;
+    }
+
+    .btn {
+        width: 100%; /* Buttons phone me full width ho jayenge premium apps ki tarah */
+        max-width: 260px;
+        padding: 14px;
+        font-size: 10px;
+        text-align: center;
+    }
+
+    /* Preloader size adjust karein phone ke liye */
+    .loader-container {
+        width: 280px;
+        height: 280px;
+    }
+
+    .outer-circle {
+        width: 260px;
+        height: 260px;
+    }
+
+    .inner-circle {
+        width: 200px;
+        height: 200px;
+    }
+
+    .loader-logo {
+        font-size: 18px;
+        letter-spacing: 4px;
+    }
+}
