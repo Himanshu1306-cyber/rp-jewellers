@@ -277,80 +277,99 @@ body, html {
     color: #fff;
     border-color: rgba(255,255,255,0.7);
 }
-/* --- 6. Mobile & Tablet Responsiveness --- */
+/* --- 6. Mobile & Tablet Responsiveness (Perfect Fixed Version) --- */
 
-/* Jab screen size 768px ya usse choti hogi (Phones aur Tablets) */
 @media screen and (max-width: 768px) {
-    /* Navbar adjust karein */
+    /* Pure body aur main content ka scale normal karein */
+    body, html {
+        position: relative;
+        overflow-x: hidden; /* Side scroll bilkul band */
+    }
+
+    /* Navbar ko top par sahi se align karein */
     .navbar {
-        padding: 20px;
+        padding: 15px 20px;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        background: rgba(0, 0, 0, 0.8); /* Phone me background dark rakhein taaki text visible ho */
     }
 
     .logo {
-        font-size: 16px;
-        letter-spacing: 2px;
-    }
-
-    /* Phone me beech ke links ko chupa denge ya design minimal karenge */
-    .nav-links {
-        display: none; /* Premium look ke liye phone me flat navigation menu hidden rakha hai */
-    }
-
-    .book-visit {
-        padding: 8px 14px;
-        font-size: 10px;
+        font-size: 14px;
         letter-spacing: 1px;
     }
 
-    /* Hero Center Content adjust karein */
-    .subtitle {
+    /* CRITICAL FIX: Jo links screen par bikhre hain, unhe mobile me chupa rahe hain temporary margin spacing hatane ke liye */
+    .nav-links {
+        display: none !important; 
+    }
+
+    .book-visit {
+        padding: 6px 12px;
         font-size: 9px;
-        letter-spacing: 3px;
-        margin-bottom: 15px;
+        letter-spacing: 1px;
     }
 
-    .main-title {
-        font-size: 38px; /* Badi screen par 80px tha, phone par 38px ekdum perfect fit aayega */
-        letter-spacing: 6px;
-        margin-bottom: 30px;
-        padding: 0 10px;
-    }
-
-    /* Buttons ko vertically stack (ek ke niche ek) karein taaki screen se bahar na jayein */
-    .cta-buttons {
-        flex-direction: column;
-        align-items: center;
-        gap: 15px;
+    /* Hero Text Container ko pure phone screen ke center me fixed karein */
+    .hero-content {
         width: 100%;
-        padding: 0 20px;
+        padding: 0 15px;
+        box-sizing: border-box;
+    }
+
+    .subtitle {
+        font-size: 8px;
+        letter-spacing: 2px;
+        margin-bottom: 10px;
+    }
+
+    /* Main Title jo video me 'RP WELLE...' hokar toot raha tha, ab ek line me aayega */
+    .main-title {
+        font-size: 26px; /* Size chota kiya taaki kisi bhi phone me na toote */
+        letter-spacing: 4px;
+        line-height: 1.2;
+        margin-bottom: 25px;
+        display: block;
+        width: 100%;
+        white-space: nowrap; /* Text ko line break karne se rokega */
+    }
+
+    /* Buttons ek ke niche ek clean dikhenge */
+    .cta-buttons {
+        flex-direction: column !important;
+        align-items: center;
+        gap: 12px;
+        width: 100%;
     }
 
     .btn {
-        width: 100%; /* Buttons phone me full width ho jayenge premium apps ki tarah */
-        max-width: 260px;
-        padding: 14px;
-        font-size: 10px;
-        text-align: center;
+        width: 80%; /* Buttons full width ke pass aayenge */
+        max-width: 220px;
+        padding: 12px 0;
+        font-size: 9px;
+        letter-spacing: 1px;
+        display: inline-block;
     }
 
-    /* Preloader size adjust karein phone ke liye */
+    /* Preloader Mobile Fix */
     .loader-container {
-        width: 280px;
-        height: 280px;
+        width: 250px;
+        height: 250px;
     }
 
     .outer-circle {
-        width: 260px;
-        height: 260px;
+        width: 220px;
+        height: 220px;
     }
 
     .inner-circle {
-        width: 200px;
-        height: 200px;
+        width: 170px;
+        height: 170px;
     }
 
     .loader-logo {
-        font-size: 18px;
-        letter-spacing: 4px;
+        font-size: 16px;
+        letter-spacing: 3px;
     }
 }
