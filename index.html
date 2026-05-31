@@ -4,15 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RP Jewellers</title>
+
+    <!-- Google Fonts Premium Look Ke Liye -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons Link (WhatsApp & Instagram Icons Ke Liye) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Aapki Custom CSS File -->
     <link rel="stylesheet" href="style.css">
 
-    <!-- SEO Meta Tags (Yahan Paste Karein) -->
+    <!-- SEO Meta Tags (Google Search Me Rank Karne Ke Liye) -->
     <meta name="description" content="RP Jewellers - Premium and Luxury Jewellery Store in Naugachhia, Bihar. Explore our exclusive signature collections.">
     <meta name="keywords" content="RP Jewellers, RP Jewellers Naugachhia, Jewellers in Bihar, Jewellery Store Naugachhia, Gold Diamond Jewellery">
     <meta name="author" content="RP Jewellers">
 
-    <!-- Google Site Verification Tag (Google Search Console waala code yahan paste karein) -->
+    <!-- Google Site Verification Tag (Google Search Console Waala Code Yahan Paste Karein) -->
     <meta name="google-site-verification" content="XYZ_AAPKA_GOOGLE_CODE_YAHAN_AAYEGA" />
 </head>
 <body>
@@ -50,7 +57,7 @@
 
             <!-- Overlay Text & Buttons -->
             <div class="hero-content">
-                <p class="subtitle">EST. 1948 — NAUGACHIA, BIHAR</p>
+                <p class="subtitle">EST. 2000 — NAUGACHIA, BIHAR</p>
                 <h1 class="main-title">RP JEWELLERS</h1>
                 <div class="cta-buttons">
                     <a href="#" class="btn btn-outline">COLLECTIONS</a>
@@ -60,7 +67,20 @@
         </section>
     </div>
 
-    <!-- JavaScript: 0% se 100% Loader Count hone ke liye -->
+    <!-- 3. Floating Social Media Buttons (WhatsApp aur Instagram) -->
+    <div class="floating-socials">
+        <!-- WhatsApp Link (91XXXXXXXXXX ki jagah apna 10-digit number likhein) -->
+        <a href="https://wa.me/919631558655" target="_blank" class="social-btn whatsapp" title="Chat on WhatsApp">
+            <i class="fa-brands fa-whatsapp"></i>
+        </a>
+        
+        <!-- Instagram Link (rpjewellers ki jagah apna username handle dalein) -->
+        <a href="https://instagram.com/mangowebdesignnstudio" target="_blank" class="social-btn instagram" title="Follow on Instagram">
+            <i class="fa-brands fa-instagram"></i>
+        </a>
+    </div>
+
+    <!-- JavaScript: 0% se 100% Loader Count aur Smooth Transition Ke Liye -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             let counterElement = document.getElementById("counter");
@@ -68,7 +88,6 @@
             let mainContent = document.getElementById("main-content");
             let count = 0;
 
-            // 0 se 100 tak count chalane ke liye interval
             let loadingInterval = setInterval(() => {
                 count++;
                 counterElement.innerText = count + "%";
@@ -76,14 +95,12 @@
                 if (count === 100) {
                     clearInterval(loadingInterval);
                     
-                    // 100% hote hi loader ko fade-out karein
                     preloader.style.opacity = "0";
                     preloader.style.visibility = "hidden";
                     
-                    // Main content ko smooth show karein
                     mainContent.classList.add("visible");
                 }
-            }, 30); // Speed control karne ke liye (30ms)
+            }, 30); 
         });
     </script>
 </body>

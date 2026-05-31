@@ -1,4 +1,6 @@
-/* Reset and Base Styles */
+/* ==========================================================================
+   1. RESET & BASE STYLES
+   ========================================================================== */
 * {
     margin: 0;
     padding: 0;
@@ -9,10 +11,12 @@
 body, html {
     height: 100%;
     background-color: #000;
-    overflow: hidden;
+    overflow-x: hidden; /* Side scroll rokne ke liye */
 }
 
-/* --- 1. Preloader CSS --- */
+/* ==========================================================================
+   2. PREMIUM 3D PRELOADER DESIGN
+   ========================================================================== */
 #preloader {
     position: fixed;
     top: 0;
@@ -47,7 +51,7 @@ body, html {
 .outer-circle {
     width: 350px;
     height: 350px;
-    border-top: 1px solid rgba(255, 255, 255, 0.2); /* Halka sa highlight rotation ke liye */
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
     animation: rotateCircle 4s linear infinite;
 }
 
@@ -74,7 +78,6 @@ body, html {
     z-index: 10;
 }
 
-/* Circle Animations */
 @keyframes rotateCircle {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
@@ -85,8 +88,9 @@ body, html {
     100% { transform: rotate(-360deg); }
 }
 
-
-/* --- 2. Main Content Entry --- */
+/* ==========================================================================
+   3. MAIN CONTENT ENTRY ANIMATION
+   ========================================================================== */
 #main-content {
     opacity: 0;
     transform: scale(1.05);
@@ -98,8 +102,9 @@ body, html {
     transform: scale(1);
 }
 
-
-/* --- 3. Navbar Design --- */
+/* ==========================================================================
+   4. DESKTOP NAVBAR DESIGN WITH ANIMATED UNDERLINE
+   ========================================================================== */
 .navbar {
     position: fixed;
     top: 0;
@@ -120,17 +125,40 @@ body, html {
     letter-spacing: 4px;
 }
 
+.nav-links {
+    display: flex;
+}
+
 .nav-links a {
     color: #ccc;
     text-decoration: none;
     font-size: 11px;
     letter-spacing: 3px;
     margin: 0 20px;
-    transition: color 0.3s;
+    position: relative; /* Underline placement ke liye relative base */
+    padding-bottom: 6px; /* Text aur line ke beech ka elegant gap */
+    transition: color 0.3s ease;
 }
 
 .nav-links a:hover {
     color: #fff;
+}
+
+/* Underline setup - Shuru me chupi rahegi (width 0) */
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px; /* Elegant single pixel thickness */
+    background-color: #fff; 
+    transition: width 0.3s cubic-bezier(0.25, 1, 0.5, 1); /* Smooth fluid movement */
+}
+
+/* Hover hote hi line left-to-right behkar aayegi */
+.nav-links a:hover::after {
+    width: 100%;
 }
 
 .book-visit {
@@ -150,8 +178,9 @@ body, html {
     border-color: #fff;
 }
 
-
-/* --- 4. 3D Cinematic Slider --- */
+/* ==========================================================================
+   5. 3D CINEMATIC SLIDER & TEXT CONTENT
+   ========================================================================== */
 .hero-container {
     position: relative;
     width: 100%;
@@ -159,7 +188,8 @@ body, html {
     display: flex;
     justify-content: center;
     align-items: center;
-    perspective: 1000px; /* 3D depth dene ke liye */
+    perspective: 1000px;
+    overflow: hidden;
 }
 
 .slider {
@@ -178,11 +208,10 @@ body, html {
     background-size: cover;
     background-position: center;
     opacity: 0;
-    /* Is animation se image slow zoom aur halki rotate hogi (3D effect) */
     animation: fadeAnd3DMove 12s infinite ease-in-out; 
 }
 
-/* Premium placeholders links lagaye hain, aap apni local images se replace kar sakte hain */
+/* NOTE: Apni images ke sahi file names yahan url ke andar update kar lena */
 .slide1 {
     background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=1920');
 }
@@ -192,30 +221,14 @@ body, html {
     animation-delay: 6s;
 }
 
-/* Advanced 3D Cinematic Parallax Motion Effect */
 @keyframes fadeAnd3DMove {
-    0% {
-        opacity: 0;
-        transform: scale(1) rotate(0deg);
-    }
-    8% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 1;
-        transform: scale(1.08) rotate(1deg) translateY(-5px); /* Smooth zoom + micro rotation */
-    }
-    58% {
-        opacity: 0;
-        transform: scale(1.1) rotate(1.5deg);
-    }
-    100% {
-        opacity: 0;
-    }
+    0% { opacity: 0; transform: scale(1) rotate(0deg); }
+    8% { opacity: 1; }
+    50% { opacity: 1; transform: scale(1.08) rotate(1deg) translateY(-5px); }
+    58% { opacity: 0; transform: scale(1.1) rotate(1.5deg); }
+    100% { opacity: 0; }
 }
 
-
-/* --- 5. Center Hero Text --- */
 .hero-content {
     position: relative;
     z-index: 2;
@@ -231,16 +244,14 @@ body, html {
     font-weight: 300;
 }
 
-
 .main-title {
     font-size: 80px;
-    font-weight: 400; /* Phele ye 200 tha, 400 karne se ye clean aur perfectly thick dikhega */
+    font-weight: 400; 
     letter-spacing: 16px;
     margin-bottom: 45px;
-    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); /* Ek halka shadow taaki image ke aage text hamesha pop-out kare */
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
 }
 
-/* Premium Minimal Buttons */
 .cta-buttons {
     display: flex;
     justify-content: center;
@@ -277,20 +288,62 @@ body, html {
     color: #fff;
     border-color: rgba(255,255,255,0.7);
 }
-/* --- 6. Mobile & Tablet Responsiveness (Final Fixed Version) --- */
 
+/* ==========================================================================
+   6. FLOATING SOCIAL MEDIA BUTTONS (WHATSAPP & INSTAGRAM)
+   ========================================================================== */
+.floating-socials {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 99999;
+}
+
+.social-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 24px;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.3s;
+}
+
+.whatsapp {
+    background-color: #25D366;
+}
+
+.whatsapp:hover {
+    background-color: #20ba5a;
+    transform: scale(1.1) translateY(-3px);
+}
+
+.instagram {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+}
+
+.instagram:hover {
+    transform: scale(1.1) translateY(-3px);
+    box-shadow: 0 6px 20px rgba(220, 39, 67, 0.4);
+}
+
+/* ==========================================================================
+   7. PERFECT FIXED MOBILE & TABLET RESPONSIVENESS
+   ========================================================================== */
 @media screen and (max-width: 768px) {
     body, html {
-        position: relative;
         overflow-x: hidden;
     }
 
-    /* Navbar standard format me rahegi */
     .navbar {
         padding: 15px 20px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
         background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
     }
 
@@ -299,11 +352,11 @@ body, html {
         letter-spacing: 1px;
     }
 
-    /* CRITICAL FIX: Links ab gayab nahi honge, balki navbar se hatkar main title ke just upar clean row me dikhenge */
+    /* Links position neatly stacked on mobile view */
     .nav-links {
         display: flex !important;
         position: absolute;
-        top: -45px; /* Title ke upar set karne ke liye */
+        top: -45px;
         left: 0;
         width: 100%;
         justify-content: center;
@@ -316,6 +369,11 @@ body, html {
         margin: 0;
         color: #ddd;
     }
+    
+    /* Mobile me extra animated pseudo border skip karne ke liye setup layout */
+    .nav-links a::after {
+        display: none !important;
+    }
 
     .book-visit {
         padding: 6px 12px;
@@ -323,13 +381,10 @@ body, html {
         letter-spacing: 1px;
     }
 
-    /* Hero Content Container */
     .hero-content {
         width: 100%;
         padding: 0 15px;
-        box-sizing: border-box;
-        position: relative;
-        margin-top: 40px; /* Links ke liye jagah banane ko */
+        margin-top: 40px;
     }
 
     .subtitle {
@@ -338,18 +393,14 @@ body, html {
         margin-bottom: 10px;
     }
 
-    /* Main Title ek line me perfect fit */
     .main-title {
         font-size: 28px;
         letter-spacing: 4px;
         line-height: 1.2;
         margin-bottom: 30px;
-        display: block;
-        width: 100%;
         white-space: nowrap;
     }
 
-    /* Buttons ek ke niche ek structured */
     .cta-buttons {
         flex-direction: column !important;
         align-items: center;
@@ -363,10 +414,22 @@ body, html {
         padding: 12px 0;
         font-size: 10px;
         letter-spacing: 1px;
-        display: inline-block;
     }
 
-    /* Preloader Setup for Mobile */
+    /* Floating Socials resizing for phone dimensions */
+    .floating-socials {
+        bottom: 20px;
+        right: 20px;
+        gap: 10px;
+    }
+    
+    .social-btn {
+        width: 44px;
+        height: 44px;
+        font-size: 20px;
+    }
+
+    /* Preloader Mobile Fix */
     .loader-container { width: 250px; height: 250px; }
     .outer-circle { width: 220px; height: 220px; }
     .inner-circle { width: 170px; height: 170px; }
