@@ -9,13 +9,12 @@
 }
 
 body, html {
-    height: 100%;
     background-color: #000;
-    overflow-x: hidden; /* Side scroll rokne ke liye */
+    overflow-x: hidden;
 }
 
 /* ==========================================================================
-   2. PREMIUM 3D PRELOADER DESIGN
+   2. PREMIUM PRELOADER DESIGN
    ========================================================================== */
 #preloader {
     position: fixed;
@@ -41,7 +40,6 @@ body, html {
     align-items: center;
 }
 
-/* Thin Circles Design */
 .circle {
     position: absolute;
     border-radius: 50%;
@@ -88,22 +86,17 @@ body, html {
     100% { transform: rotate(-360deg); }
 }
 
-/* ==========================================================================
-   3. MAIN CONTENT ENTRY ANIMATION
-   ========================================================================== */
 #main-content {
     opacity: 0;
-    transform: scale(1.05);
-    transition: opacity 1.5s cubic-bezier(0.25, 1, 0.5, 1), transform 1.5s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 #main-content.visible {
     opacity: 1;
-    transform: scale(1);
 }
 
 /* ==========================================================================
-   4. DESKTOP NAVBAR DESIGN WITH ANIMATED UNDERLINE
+   3. FIXED NAVBAR WITH ANIMATED UNDERLINE
    ========================================================================== */
 .navbar {
     position: fixed;
@@ -114,8 +107,8 @@ body, html {
     justify-content: space-between;
     align-items: center;
     padding: 30px 50px;
-    z-index: 10;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.7), transparent);
+    z-index: 100;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
 }
 
 .logo {
@@ -135,8 +128,8 @@ body, html {
     font-size: 11px;
     letter-spacing: 3px;
     margin: 0 20px;
-    position: relative; /* Underline placement ke liye relative base */
-    padding-bottom: 6px; /* Text aur line ke beech ka elegant gap */
+    position: relative;
+    padding-bottom: 6px;
     transition: color 0.3s ease;
 }
 
@@ -144,19 +137,17 @@ body, html {
     color: #fff;
 }
 
-/* Underline setup - Shuru me chupi rahegi (width 0) */
 .nav-links a::after {
     content: '';
     position: absolute;
     bottom: 0;
     left: 0;
     width: 0;
-    height: 1px; /* Elegant single pixel thickness */
-    background-color: #fff; 
-    transition: width 0.3s cubic-bezier(0.25, 1, 0.5, 1); /* Smooth fluid movement */
+    height: 1px;
+    background-color: #fff;
+    transition: width 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* Hover hote hi line left-to-right behkar aayegi */
 .nav-links a:hover::after {
     width: 100%;
 }
@@ -179,61 +170,68 @@ body, html {
 }
 
 /* ==========================================================================
-   5. 3D CINEMATIC SLIDER & TEXT CONTENT
+   4. CINEMATIC 3D PARALLAX ENGINE (STITCHLESS OVERLAY CANVAS)
    ========================================================================== */
-.hero-container {
+.scroller-3d {
     position: relative;
+    width: 100%;
+    height: 200vh; /* Canvas scroll timeline area height */
+    background-color: #000;
+}
+
+.view-section {
+    position: fixed; /* Screen par layers ko stack karke fixed lock kiya */
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    perspective: 1000px;
     overflow: hidden;
+    perspective: 1200px;
 }
 
-.slider {
+/* Index layers structure configuration */
+#hero-ring {
+    z-index: 3;
+}
+
+#hero-pendant {
+    z-index: 2;
+}
+
+.bg-3d {
     position: absolute;
-    width: 100%;
-    height: 100%;
     top: 0;
     left: 0;
-    z-index: 1;
-}
-
-.slide {
-    position: absolute;
     width: 100%;
     height: 100%;
     background-size: cover;
     background-position: center;
-    opacity: 0;
-    animation: fadeAnd3DMove 12s infinite ease-in-out; 
+    background-repeat: no-repeat;
+    will-change: transform, opacity;
+    transform: scale(1) translateZ(0);
+    transition: transform 0.1s cubic-bezier(0.1, 0.8, 0.2, 1), opacity 0.1s linear;
 }
 
-/* NOTE: Apni images ke sahi file names yahan url ke andar update kar lena */
+/* Images paths definitions */
 .slide1 {
-    background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=1920');
+    background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=1920');
 }
 
 .slide2 {
-    background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=1920');
-    animation-delay: 6s;
-}
-
-@keyframes fadeAnd3DMove {
-    0% { opacity: 0; transform: scale(1) rotate(0deg); }
-    8% { opacity: 1; }
-    50% { opacity: 1; transform: scale(1.08) rotate(1deg) translateY(-5px); }
-    58% { opacity: 0; transform: scale(1.1) rotate(1.5deg); }
-    100% { opacity: 0; }
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=1920');
+    opacity: 0; /* Background stack default transparency setup */
 }
 
 .hero-content {
     position: relative;
-    z-index: 2;
+    z-index: 5;
     text-align: center;
     color: #fff;
+    will-change: transform, opacity;
+    transition: transform 0.1s cubic-bezier(0.1, 0.8, 0.2, 1), opacity 0.1s linear;
 }
 
 .subtitle {
@@ -246,10 +244,10 @@ body, html {
 
 .main-title {
     font-size: 80px;
-    font-weight: 400; 
+    font-weight: 400;
     letter-spacing: 16px;
     margin-bottom: 45px;
-    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
 }
 
 .cta-buttons {
@@ -264,6 +262,8 @@ body, html {
     letter-spacing: 3px;
     padding: 16px 38px;
     border-radius: 2px;
+    cursor: pointer;
+    background: transparent;
     transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
@@ -290,7 +290,7 @@ body, html {
 }
 
 /* ==========================================================================
-   6. FLOATING SOCIAL MEDIA BUTTONS (WHATSAPP & INSTAGRAM)
+   5. FLOATING PREMIUM BLACK & GOLD SOCIALS
    ========================================================================== */
 .floating-socials {
     position: fixed;
@@ -309,42 +309,29 @@ body, html {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #fff;
-    font-size: 24px;
     text-decoration: none;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.3s;
+    background-color: #111111;
+    border: 1px solid rgba(223, 186, 107, 0.4);
+    color: #dfba6b;
+    font-size: 22px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-.whatsapp {
-    background-color: #25D366;
-}
-
-.whatsapp:hover {
-    background-color: #20ba5a;
-    transform: scale(1.1) translateY(-3px);
-}
-
-.instagram {
-    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-}
-
-.instagram:hover {
-    transform: scale(1.1) translateY(-3px);
-    box-shadow: 0 6px 20px rgba(220, 39, 67, 0.4);
+.social-btn:hover {
+    background-color: #dfba6b;
+    color: #000000;
+    border-color: #dfba6b;
+    transform: scale(1.1) translateY(-4px);
+    box-shadow: 0 8px 25px rgba(223, 186, 107, 0.3);
 }
 
 /* ==========================================================================
-   7. PERFECT FIXED MOBILE & TABLET RESPONSIVENESS
+   6. MOBILE & RESPONSIVENESS SYSTEM
    ========================================================================== */
 @media screen and (max-width: 768px) {
-    body, html {
-        overflow-x: hidden;
-    }
-
     .navbar {
         padding: 15px 20px;
-        background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
     }
 
     .logo {
@@ -352,7 +339,6 @@ body, html {
         letter-spacing: 1px;
     }
 
-    /* Links position neatly stacked on mobile view */
     .nav-links {
         display: flex !important;
         position: absolute;
@@ -367,10 +353,8 @@ body, html {
         font-size: 9px;
         letter-spacing: 1px;
         margin: 0;
-        color: #ddd;
     }
     
-    /* Mobile me extra animated pseudo border skip karne ke liye setup layout */
     .nav-links a::after {
         display: none !important;
     }
@@ -378,58 +362,38 @@ body, html {
     .book-visit {
         padding: 6px 12px;
         font-size: 9px;
-        letter-spacing: 1px;
-    }
-
-    .hero-content {
-        width: 100%;
-        padding: 0 15px;
-        margin-top: 40px;
-    }
-
-    .subtitle {
-        font-size: 8px;
-        letter-spacing: 2px;
-        margin-bottom: 10px;
     }
 
     .main-title {
         font-size: 28px;
         letter-spacing: 4px;
-        line-height: 1.2;
-        margin-bottom: 30px;
         white-space: nowrap;
     }
 
     .cta-buttons {
-        flex-direction: column !important;
+        flex-direction: column;
         align-items: center;
         gap: 12px;
-        width: 100%;
     }
 
     .btn {
         width: 85%;
         max-width: 240px;
         padding: 12px 0;
-        font-size: 10px;
-        letter-spacing: 1px;
     }
 
-    /* Floating Socials resizing for phone dimensions */
     .floating-socials {
-        bottom: 20px;
-        right: 20px;
-        gap: 10px;
+        bottom: 25px;
+        right: 25px;
+        gap: 12px;
     }
     
     .social-btn {
         width: 44px;
         height: 44px;
-        font-size: 20px;
+        font-size: 18px;
     }
 
-    /* Preloader Mobile Fix */
     .loader-container { width: 250px; height: 250px; }
     .outer-circle { width: 220px; height: 220px; }
     .inner-circle { width: 170px; height: 170px; }

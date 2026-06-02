@@ -5,26 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RP Jewellers</title>
 
-    <!-- Google Fonts Premium Look Ke Liye -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;600&display=swap" rel="stylesheet">
     
-    <!-- Font Awesome Icons Link (WhatsApp & Instagram Icons Ke Liye) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
-    <!-- Aapki Custom CSS File -->
     <link rel="stylesheet" href="style.css">
 
-    <!-- SEO Meta Tags (Google Search Me Rank Karne Ke Liye) -->
-    <meta name="description" content="RP Jewellers - Premium and Luxury Jewellery Store in Naugachhia, Bihar. Explore our exclusive signature collections.">
-    <meta name="keywords" content="RP Jewellers, RP Jewellers Naugachhia, Jewellers in Bihar, Jewellery Store Naugachhia, Gold Diamond Jewellery">
+    <meta name="description" content="RP Jewellers - Premium and Luxury Jewellery Store in Naugachhia, Bihar.">
+    <meta name="keywords" content="RP Jewellers, RP Jewellers Naugachhia, Gold Diamond Jewellery">
     <meta name="author" content="RP Jewellers">
 
-    <!-- Google Site Verification Tag (Google Search Console Waala Code Yahan Paste Karein) -->
     <meta name="google-site-verification" content="XYZ_AAPKA_GOOGLE_CODE_YAHAN_AAYEGA" />
 </head>
 <body>
 
-    <!-- 1. Premium 1-100% Circle Preloader -->
     <div id="preloader">
         <div class="loader-container">
             <div class="circle outer-circle"></div>
@@ -34,53 +28,55 @@
         </div>
     </div>
 
-    <!-- 2. Main Website Layout (Jo Loading ke baad smooth entry lega) -->
     <div id="main-content">
-        <!-- Header / Navbar -->
         <header class="navbar">
             <div class="logo">RP JEWELLERS</div>
             <nav class="nav-links">
-                <a href="#">COLLECTIONS</a>
-                <a href="#">SIGNATURE</a>
-                <a href="#">ATELIER</a>
-                <a href="#">CONTACT</a>
+                <a href="#collections">COLLECTIONS</a>
+                <a href="#signature">SIGNATURE</a>
+                <a href="#atelier">ATELIER</a>
+                <a href="#contact">CONTACT</a>
             </nav>
             <button class="book-visit">BOOK VISIT</button>
         </header>
 
-        <!-- Hero Section / 3D Cinematic Slider -->
-        <section class="hero-container">
-            <div class="slider">
-                <div class="slide slide1"></div>
-                <div class="slide slide2"></div>
-            </div>
-
-            <!-- Overlay Text & Buttons -->
-            <div class="hero-content">
-                <p class="subtitle">EST. 2000 — NAUGACHIA, BIHAR</p>
-                <h1 class="main-title">RP JEWELLERS</h1>
-                <div class="cta-buttons">
-                    <a href="#" class="btn btn-outline">COLLECTIONS</a>
-                    <a href="#" class="btn btn-filled">ENTER SITE →</a>
+        <div class="scroller-3d">
+            
+            <section class="view-section" id="hero-ring">
+                <div class="bg-3d slide1" id="bg-ring"></div>
+                <div class="hero-content" id="content-ring">
+                    <p class="subtitle">EST. 2000 — NAUGACHIA, BIHAR</p>
+                    <h1 class="main-title">RP JEWELLERS</h1>
+                    <div class="cta-buttons">
+                        <a href="#collections" class="btn btn-outline">COLLECTIONS</a>
+                        <button onclick="scrollToPendant()" class="btn btn-filled">ENTER SITE →</button>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+
+            <section class="view-section" id="hero-pendant">
+                <div class="bg-3d slide2" id="bg-pendant"></div>
+                <div class="hero-content" id="content-pendant">
+                    <p class="subtitle">EXCLUSIVE CRAFTSMANSHIP</p>
+                    <h1 class="main-title">THE ATELIER</h1>
+                    <div class="cta-buttons">
+                        <a href="#signature" class="btn btn-filled">VIEW SIGNATURE →</a>
+                    </div>
+                </div>
+            </section>
+            
+        </div>
     </div>
 
-    <!-- 3. Floating Social Media Buttons (WhatsApp aur Instagram) -->
     <div class="floating-socials">
-        <!-- WhatsApp Link (91XXXXXXXXXX ki jagah apna 10-digit number likhein) -->
         <a href="https://wa.me/919631558655" target="_blank" class="social-btn whatsapp" title="Chat on WhatsApp">
             <i class="fa-brands fa-whatsapp"></i>
         </a>
-        
-        <!-- Instagram Link (rpjewellers ki jagah apna username handle dalein) -->
-        <a href="https://instagram.com/mangowebdesignnstudio" target="_blank" class="social-btn instagram" title="Follow on Instagram">
+        <a href="https://instagram.com/rpjewellers" target="_blank" class="social-btn instagram" title="Follow on Instagram">
             <i class="fa-brands fa-instagram"></i>
         </a>
     </div>
 
-    <!-- JavaScript: 0% se 100% Loader Count aur Smooth Transition Ke Liye -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             let counterElement = document.getElementById("counter");
@@ -94,14 +90,66 @@
 
                 if (count === 100) {
                     clearInterval(loadingInterval);
-                    
                     preloader.style.opacity = "0";
                     preloader.style.visibility = "hidden";
-                    
                     mainContent.classList.add("visible");
                 }
-            }, 30); 
+            }, 20); 
         });
+
+        // Fixed Overlay Parallax Engine
+        window.addEventListener('scroll', () => {
+            let scrollY = window.scrollY;
+            let windowHeight = window.innerHeight;
+            let progress = scrollY / windowHeight;
+
+            // Elements references
+            let bgRing = document.getElementById('bg-ring');
+            let contentRing = document.getElementById('content-ring');
+            let bgPendant = document.getElementById('bg-pendant');
+            let contentPendant = document.getElementById('content-pendant');
+
+            // 1. Ring Slide Handling (Deep Zoom Out & Fade)
+            if (scrollY <= windowHeight) {
+                let ringScale = 1 + (progress * 0.3); 
+                let ringOpacity = 1 - (scrollY / (windowHeight * 0.8));
+                let ringTextY = scrollY * 0.4;
+
+                bgRing.style.transform = `scale(${ringScale}) translateZ(0)`;
+                bgRing.style.opacity = ringOpacity < 0 ? 0 : ringOpacity;
+                contentRing.style.transform = `translateY(${ringTextY}px)`;
+                contentRing.style.opacity = ringOpacity < 0 ? 0 : ringOpacity;
+            }
+
+            // 2. Pendant Slide Handling (Seamless Overlay Zoom In & Fade In)
+            if (scrollY >= 0) {
+                // Background Pendant Scale Logic (Fluid entry)
+                let pendantScale = 1.3 - (progress * 0.3);
+                if (pendantScale < 1.0) pendantScale = 1.0;
+                
+                bgPendant.style.transform = `scale(${pendantScale}) translateZ(0)`;
+                
+                // Opacity curve sets up clear overlay transition over ring layer
+                let pendantOpacity = (scrollY) / (windowHeight * 0.8);
+                bgPendant.style.opacity = pendantOpacity > 1 ? 1 : pendantOpacity;
+
+                // Text Slide up dynamic motion
+                let textTranslateY = (windowHeight - scrollY) * 0.3;
+                if (textTranslateY < 0) textTranslateY = 0;
+                contentPendant.style.transform = `translateY(${textTranslateY}px)`;
+                
+                let textOpacity = (scrollY - (windowHeight * 0.2)) / (windowHeight * 0.6);
+                contentPendant.style.opacity = textOpacity < 0 ? 0 : (textOpacity > 1 ? 1 : textOpacity);
+            }
+        });
+
+        // Smooth Overlay Scroll Shift
+        function scrollToPendant() {
+            window.scrollTo({
+                top: window.innerHeight,
+                behavior: 'smooth'
+            });
+        }
     </script>
 </body>
 </html>
